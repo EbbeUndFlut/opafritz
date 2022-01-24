@@ -9,11 +9,11 @@ const Navbar = () => {
         <nav className="w-full flex py-2 px-4 justify-between flex-row">
             <p className="text-xl">Opa Fritz</p>
             <div className="w-6 z-10" onClick={handleNavbarClick}>
-                <div className="w-full h-1 my-1 bg-black"></div>
+                <div className="w-full h-1 my-1 bg-highlight"></div>
                 <div className="w-full h-1 my-1 bg-black"></div>
                 <div className="w-full h-1 my-1 bg-black"></div>
             </div>
-            <div className="absolute top-0 left-0 w-screen h-screen hidden  bg-indigo-500 flex flex-col justify-center" id="itemContainer">
+            <div className="absolute top-0 left-0 w-screen h-screen hidden  bg-text flex flex-col justify-center" id="itemContainer">
                 <NavItem text="Home"></NavItem>
                 <NavItem text="About"></NavItem>
                 <NavItem text="Blog"></NavItem>
