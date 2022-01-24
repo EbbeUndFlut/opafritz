@@ -1,14 +1,28 @@
 import { useState, useEffect, useRef } from "react"
 
 import NavballItem from "./NavBallItem"
+
 const NavballContainer = () => {
-    const element = useRef()
-    // useEffect(() => {})
+    const [childs, setChilds] = useState([])
+    const handleWheelAction = (event) => {
+        console.log(childs)
+        if (childs.length > 0) {
+            childs[0].style.transform = "rotate(90deg)"
+        }
+    }
+    useEffect(() => {
+        console.log("im ersten")
+    }, [])
+    useEffect(() => {
+        window.addEventListener("wheel", handleWheelAction)
+        setChilds(document.getElementById("navContainer").children)
+        console.log("im zweiten")
+    }, [childs])
     return (
-        <div ref={element} className="w-[32rem] h-[32rem] rounded-full bg-secondary relative">
-            <NavballItem active="true"></NavballItem>
-            <NavballItem active="false"></NavballItem>
-            <NavballItem active="false"></NavballItem>
+        <div id="navContainer" className="w-[32rem] h-[32rem] rounded-full bg-secondary relative">
+            <NavballItem></NavballItem>
+            <NavballItem></NavballItem>
+            <NavballItem></NavballItem>
         </div>
     )
 }
