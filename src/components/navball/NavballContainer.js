@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom"
 import NavballItem from "./NavBallItem"
 
 const Items = [
+    { path: "/" },
     {
         path: "/tech",
         name: "Unser Techstack",
@@ -17,29 +18,39 @@ const NavballContainer = () => {
     const navigate = useNavigate()
     const [childs, setChilds] = useState([])
     const [items, setItems] = useState([])
-    // const [active, setActive] = useState(0)
     let active = useRef(0)
-    let aRef = useRef(null)
 
     const handleWheelAction = (event) => {
-        console.log(active)
-        if (childs.length > 0) {
-            console.log("in der if abfrage")
-            childs[active.current].style.transform = "rotate(270deg)"
+        console.log(event)
+        if (event.wheelDelta < 0) {
+            active.current += 1
+            if (childs.length > 0 && event.wheelDelta < 0) {
+                childs[active.current].style.transform = "rotate(90deg)"
+                navigate(Items[active.current].path)
+            }
+        } else {
+            if (active.current == 0) {
+                active.current = 0
+            } else {
+                active.current -= 1
+            }
+            childs[active.current].style.transform = "rotate(0deg)"
             navigate(Items[active.current].path)
-            active.current = 1
         }
     }
+
     useEffect(() => {
         Items.forEach((item) => setItems((oldItems) => [...oldItems, item]))
     }, [])
     useEffect(() => {
         window.addEventListener("wheel", handleWheelAction)
         setChilds(document.getElementById("navContainer").children)
-        console.log("im zweiten")
-    }, [childs])
+        return () => {
+            window.removeEventListener("wheel", handleWheelAction)
+        }
+    }, [handleWheelAction])
     return (
-        <div id="navContainer" className="w-[32rem] h-[32rem] rounded-full bg-secondary relative">
+        <div id="navContainer" className="w-[50rem] h-[50rem] -translate-x-3/4 rounded-full bg-secondary relative">
             {items.map((item, key) => (
                 <NavballItem key={key} link={item.path}></NavballItem>
             ))}

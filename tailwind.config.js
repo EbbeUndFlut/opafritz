@@ -7,7 +7,11 @@ module.exports = {
             text: "#6C6876",
             highlight: "#FFCDB2",
         },
-        extend: {},
+        extend: {
+		fontFamily: {
+			'roboto':['"Roboto Mono"', 'monospace']
+		}
+	},
     },
     plugins: [],
 }
