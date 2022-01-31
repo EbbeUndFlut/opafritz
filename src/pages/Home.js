@@ -1,4 +1,3 @@
-import Navbar from "../components/Navbar"
 import Navball from "../components/navball/NavballContainer"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import TechStack from "./Techstack"

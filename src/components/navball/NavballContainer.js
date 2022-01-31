@@ -25,6 +25,9 @@ const NavballContainer = () => {
         if (event.wheelDelta < 0) {
             active.current += 1
             if (childs.length > 0 && event.wheelDelta < 0) {
+                if (active.current >= childs.length) {
+                    active.current = childs.length - 1
+                }
                 childs[active.current].style.transform = "rotate(90deg)"
                 navigate(Items[active.current].path)
             }
